@@ -1,7 +1,8 @@
-const express = require('express');
+const express = require('express')
+const PORT = process.env.PORT || 5000
 
-const path = require ('path');
-require('dotenv').config();
+express()
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 // app de Express
 const app = express();
