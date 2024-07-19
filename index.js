@@ -1,24 +1,14 @@
-const express = require('express')
-const PORT = process.env.PORT || 5000
+const express = require('express');
+const http = require('http');
+const socketIO = require('socket.io');
+const path = require('path');
 
-express()
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
-
-// app de Express
 const app = express();
+const server = http.createServer(app);
+const io = socketIO(server);
 
-//node server
-const server = require('http').createServer(app);
-module.exports.io=require('socket.io')(server);
-require('./sockets/sockets.js');
-
-
-
-
-
-////////////// path publico
-const publicPath = path.resolve( __dirname, 'public');
-app.use( express.static( publicPath));
+// Establecer directorio público
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 server.listen(process.env.PORT , (err)=> {
