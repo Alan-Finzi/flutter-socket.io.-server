@@ -1,14 +1,23 @@
 const express = require('express');
-const http = require('http');
-const socketIO = require('socket.io');
-const path = require('path');
 
+const path = require ('path');
+require('dotenv').config();
+
+// app de Express
 const app = express();
-const server = http.createServer(app);
-const io = socketIO(server);
 
-// Establecer directorio público
-app.use(express.static(path.join(__dirname, 'public')));
+//node server
+const server = require('http').createServer(app);
+module.exports.io=require('socket.io')(server);
+require('./sockets/sockets.js');
+
+
+
+
+
+////////////// path publico
+const publicPath = path.resolve( __dirname, 'public');
+app.use( express.static( publicPath));
 
 
 server.listen(process.env.PORT , (err)=> {
