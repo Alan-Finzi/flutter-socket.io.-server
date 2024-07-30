@@ -34,6 +34,8 @@
 
     socket.on('mensaje', function(payload){console.log('escuchando:', payload)});
 
+    socket.on('active-bands', function(bands){console.log(bands)});
+
     socket.on('nuevo-mensaje', function(payload){console.log('escuchando:', payload)});
 
     </script>
